@@ -10,12 +10,21 @@ proxy-groups:
   - name: 全局选择
     type: select
     proxies:
+      - All
       - sspool
-      # - bihai
       - dswang
-      # - lonxin
-      - herokuapp
-      - wxshi
+
+  - name: 手动选择
+    type: select
+    use:
+      - sspoolAll
+      - dswangAll
+
+  - name: All
+    type: url-test
+    use:
+      - sspoolAll
+      - dswangAll
 
   - name: sspool
     type: url-test
@@ -23,46 +32,13 @@ proxy-groups:
       - sspoolAll
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
-  # - name: bihai
-  #   type: url-test
-  #   use:
-  #     - bihaiAll
-  #   url: 'http://www.gstatic.com/generate_204'
-  #   interval: 300
   - name: dswang
     type: url-test
     use:
       - dswangAll
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
-  # - name: lonxin
-  #   type: url-test
-  #   use:
-  #     - lonxinAll
-  #   url: 'http://www.gstatic.com/generate_204'
-  #   interval: 300
-  - name: herokuapp
-    type: url-test
-    use:
-      - herokuappAll
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-  - name: wxshi
-    type: url-test
-    use:
-      - wxshiAll
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
 
-  - name: 手动选择
-    type: select
-    use:
-      - sspoolAll
-      # - bihaiAll
-      - dswangAll
-      # - lonxinAll
-      - herokuappAll
-      - wxshiAll
 #=================================================proxy-providers===============================================
 proxy-providers:
   sspoolAll:
@@ -75,51 +51,11 @@ proxy-providers:
       interval: 600
       # lazy: true
       url: http://www.gstatic.com/generate_204
-  # bihaiAll:
-  #   type: http
-  #   url: "https://proxies.bihai.cf/clash/proxies?nc=CN&speed=15,30"
-  #   interval: 3600
-  #   path: ./bihai.yaml
-  #   health-check:
-  #     enable: true
-  #     interval: 600
-  #     # lazy: true
-  #     url: http://www.gstatic.com/generate_204
   dswangAll:
     type: http
     url: "https://free.dswang.ga/clash/proxies?nc=CN&speed=15,30"
     interval: 3600
     path: ./dswang.yaml
-    health-check:
-      enable: true
-      interval: 600
-      # lazy: true
-      url: http://www.gstatic.com/generate_204
-  # lonxinAll:
-  #   type: http
-  #   url: "https://fq.lonxin.net/clash/proxies?nc=CN&speed=15,30"
-  #   interval: 3600
-  #   path: ./lonxin.yaml
-  #   health-check:
-  #     enable: true
-  #     interval: 600
-  #     # lazy: true
-  #     url: http://www.gstatic.com/generate_204
-  herokuappAll:
-    type: http
-    url: "https://us-proxypool.herokuapp.com/clash/proxies?nc=CN&speed=15,30"
-    interval: 3600
-    path: ./herokuapp.yaml
-    health-check:
-      enable: true
-      interval: 600
-      # lazy: true
-      url: http://www.gstatic.com/generate_204
-  wxshiAll:
-    type: http
-    url: "http://wxshi.top:9090/clash/proxies?nc=CN&speed=15,30"
-    interval: 3600
-    path: ./wxshi.yaml
     health-check:
       enable: true
       interval: 600
